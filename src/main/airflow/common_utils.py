@@ -20,11 +20,13 @@ def get_pipeline_configs(config,date_str,data_set_id):
     return source_path, ingest_path, transform_datasetId, transform_path
 
 def get_app_configs(config,date_str):
+    uber_transform_datasetId = config['transform']['hdfs']['dataSets']['uber_data']
     uber_data_path = DIR_PATH+config['transform']['hdfs']['uri'] %(config['common']['hdfs']['lake2Path']
-        , 'uber_data'
+        , uber_transform_datasetId
         ,date_str)
+    weather_transform_datasetId = config['transform']['hdfs']['dataSets']['weather_data']
     weather_data_path = DIR_PATH+config['transform']['hdfs']['uri'] %(config['common']['hdfs']['lake2Path']
-        , 'weather_data'
+        , weather_transform_datasetId
         ,date_str)
     app_dataset = config['app']['dataset']
     app_path = DIR_PATH+config['app']['uri'] %(config['common']['hdfs']['lake3Path']

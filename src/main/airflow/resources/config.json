@@ -10,7 +10,7 @@
   "ingest":{
     "sources":{
         "uber_data":"data/source/uber.csv"
-        ,"weather_data":"fdata/source/weather.csv"
+        ,"weather_data":"data/source/weather.csv"
       }
     ,
     "output":{
