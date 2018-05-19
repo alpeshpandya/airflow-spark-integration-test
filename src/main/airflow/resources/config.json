@@ -1,0 +1,37 @@
+{
+  "common":{
+    "hdfs":{
+      "host":""
+      ,"lake1Path":"data/ingest"
+      ,"lake2Path":"data/transform"
+      ,"lake3Path":"data/datamart"
+    }
+  },
+  "ingest":{
+    "sources":{
+        "uber_data":"data/source/uber.csv"
+        ,"weather_data":"fdata/source/weather.csv"
+      }
+    ,
+    "output":{
+      "hdfs" :{
+        "uri":"%s/%s/%s"
+        ,"dataSets":{
+            "uber_data":"uberdata"
+            ,"weather_data":"weatherdata"
+        }
+      }
+    }
+  },
+  "transform":{
+    "hdfs": {
+      "uri":"%s/%s/%s",
+      "dataSets":{"uber_data":"uberdata"
+        ,"weather_data":"weatherdata"}
+    }
+  },
+  "app":{
+    "uri":"%s/%s/%s"
+    ,"dataset":"uberridesbyhumidity"
+  }
+}
