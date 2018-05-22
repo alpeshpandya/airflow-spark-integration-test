@@ -18,7 +18,6 @@ def cleanup_task_factory(task_id, path, parent_dag, upstream_task):
     cleanup_path = path
     if cleanup_path.startswith('file://'):
         cleanup_path = cleanup_path[7:]
-    print("FACTORY CLEANUP ::::::::::::::::::::::::::: " + cleanup_path+ ' ::: '+task_id)
     cleanup_task = PythonOperator(
         task_id=task_id,
         python_callable=cleanup_dir,

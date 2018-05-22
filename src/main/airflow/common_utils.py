@@ -5,7 +5,6 @@ DIR_PATH = 'file://' + os.path.dirname(os.path.realpath(__file__)) + '/'
 
 
 def cleanup_dir(path):
-    print("REMOVING ::::::::::::::::::::::::::: "+path)
     if os.path.exists(path) and os.path.isdir(path):
         shutil.rmtree(path)
     return path
