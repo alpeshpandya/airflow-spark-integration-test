@@ -15,7 +15,7 @@ object UberRidesByHumidityRange {
     log.setLevel(Level.INFO)
 
     //Parse argument/s
-    if(args.size<3){
+    if (args.size < 3) {
       log.warn("Warehouse location, data paths and output path are required")
       System.exit(1)
     }
@@ -24,7 +24,8 @@ object UberRidesByHumidityRange {
     val outputPath = args(2)
 
     val spark =
-      SparkSession.builder.appName("Uber Rides By Humidity: Data App")
+      SparkSession.builder
+        .appName("Uber Rides By Humidity: Data App")
         .getOrCreate()
     log.info("Application Initialized: " + spark.sparkContext.appName)
 

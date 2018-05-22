@@ -10,7 +10,7 @@ object DailyDriver {
     log.setLevel(Level.INFO)
 
     //Parse argument/s
-    if(args.size<2){
+    if (args.size < 2) {
       log.warn("Input source and output path are required")
       System.exit(1)
     }
@@ -18,10 +18,10 @@ object DailyDriver {
     val outputPath = args(1)
 
     val spark =
-      SparkSession.builder.appName("Integration Test: Ingest")
+      SparkSession.builder
+        .appName("Integration Test: Ingest")
         .getOrCreate()
     log.info("Application Initialized: " + spark.sparkContext.appName)
-
 
     spark.read
       .format("org.apache.spark.csv")
