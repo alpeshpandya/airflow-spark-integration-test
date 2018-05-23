@@ -3,9 +3,10 @@ import json
 import glob
 import pyarrow.parquet as pq
 from datetime import date
-from common_utils import *
+from main.common_utils import *
 from airflow import models
 from airflow.settings import Session
+
 
 def create_tmp_dir(path):
     if not os.path.exists(path):
@@ -26,7 +27,7 @@ def get_local_path(path):
 def test_setup(test_case_class, dag):
     test_case_class.dag = dag
     test_case_class.today = date.today().strftime("%Y%m%d")
-    with open(os.path.abspath('.') + '/config.json', 'r') as f:
+    with open('pipeline/resources/config.json', 'r') as f:
         test_case_class.config = json.load(f)
 
     # Initialize configs
@@ -60,6 +61,7 @@ def verify_schema(path, length, fields):
     assert len(schema) == length
     for field in fields:
         assert field in schema
+
 
 def reset(dag_id='humidity_uber_rides'):
     session = Session()

@@ -2,8 +2,8 @@ import unittest
 import csv
 from airflow import models
 from datetime import datetime
-from weather_uber_rides_dag import dag
-from test_utils import *
+from main import dag
+from test.test_utils import *
 
 DEFAULT_DATE = datetime(2015, 1, 1)
 

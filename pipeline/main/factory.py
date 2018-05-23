@@ -4,14 +4,14 @@ from airflow.operators.python_operator import PythonOperator
 import os
 
 # Constants
-# In future use SparkOperator from airflow with new version
+# In future use SparkOperator from pipeline with new version
 SPARK_SUBMIT = 'spark-submit'
 MODE = '--deploy-mode client'
 INGEST_DRIVER = '--class com.alpesh.integration.batch.ingest.DailyDriver'
 TRANSFORM_DRIVER = '--class com.alpesh.integration.batch.transform.DailyDriver'
 APP_DRIVER = '--class com.alpesh.integration.batch.app.UberRidesByHumidityRange'
-DIR_PATH = os.path.dirname(os.path.realpath(__file__))
-APP = DIR_PATH + '/rides_by_humidity_2.11-0.1.0.jar'
+DIR_PATH = os.getcwd()
+APP = DIR_PATH + '/target/scala-2.11//rides_by_humidity_2.11-0.1.0.jar'
 
 
 def cleanup_task_factory(task_id, path, parent_dag, upstream_task):

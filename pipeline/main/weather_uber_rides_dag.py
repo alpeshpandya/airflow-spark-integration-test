@@ -7,13 +7,15 @@ from factory import pipeline_factory, app_task_factory
 import os
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
+print (DIR_PATH)
+PARENT_PATH=os.path.abspath('..')
 today = date.today().strftime("%Y%m%d")
 dag = DAG('humidity_uber_rides', description='Humidity Range & Uber Rides - Pipeline',
           schedule_interval='0 10 * * *',
           start_date=datetime.now(),
           catchup=False)
 
-with open(DIR_PATH + '/config.json', 'r') as f:
+with open('pipeline/resources/config.json', 'r') as f:
     config = json.load(f)
 
 start_operator = DummyOperator(task_id='start_task', dag=dag)

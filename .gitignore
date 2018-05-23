@@ -2,3 +2,14 @@
 project
 target
 spark-warehouse
+src/.idea
+data/datamart/uberridesbyhumidity/
+data/ingest/uberdata/
+data/ingest/weatherdata/
+data/transform/uberdata/
+data/transform/weatherdata/
+src/test/__pycache__/
+src/mains/__pycache__/
+pipeline/venv
+pipeline/test/__pycache__/
+pipeline/main/__pycache__/
