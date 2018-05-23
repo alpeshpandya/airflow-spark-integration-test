@@ -13,3 +13,4 @@ src/mains/__pycache__/
 pipeline/venv
 pipeline/test/__pycache__/
 pipeline/main/__pycache__/
+airflowenv
