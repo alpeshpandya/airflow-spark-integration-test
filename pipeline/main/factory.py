@@ -1,4 +1,4 @@
-from common_utils import *
+from main.common_utils import *
 from airflow.operators.bash_operator import BashOperator
 from airflow.operators.python_operator import PythonOperator
 import os
@@ -11,7 +11,7 @@ INGEST_DRIVER = '--class com.alpesh.integration.batch.ingest.DailyDriver'
 TRANSFORM_DRIVER = '--class com.alpesh.integration.batch.transform.DailyDriver'
 APP_DRIVER = '--class com.alpesh.integration.batch.app.UberRidesByHumidityRange'
 DIR_PATH = os.getcwd()
-APP = DIR_PATH + '/target/scala-2.11//rides_by_humidity_2.11-0.1.0.jar'
+APP = DIR_PATH + '/pipeline/rides_by_humidity_2.11-0.1.0.jar'
 
 
 def cleanup_task_factory(task_id, path, parent_dag, upstream_task):

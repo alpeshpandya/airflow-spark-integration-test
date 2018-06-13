@@ -1,0 +1,8 @@
+version: '2.2'
+services:
+  airflow-spark-test-app:
+    image: airflow-spark-app
+    volumes:
+      - ../logs:/airflow-spark-app/pipeline/logs
+      - ./run_test.sh:/airflow-spark-app/pipeline/run_test.sh
+    command: bash -c "chmod +x /airflow-spark-app/pipeline/run_test.sh && /airflow-spark-app/pipeline/run_test.sh"

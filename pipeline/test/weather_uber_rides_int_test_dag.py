@@ -16,7 +16,7 @@ class WeatherUberRidesIntegrationTest(unittest.TestCase):
         task_instance = models.TaskInstance(task=start_task, execution_date=datetime.now())
         start_task.execute(task_instance.get_template_context())
 
-    def test_uber_ingest_cleanup_task(self):
+    def test_01_uber_ingest_cleanup_task(self):
         "Test to confirm that cleanup task removes directory if exists"
         local_path = get_local_path(self.uber_ingest_path)
         task = self.dag.get_task('cleanup_ingest_uberdata')
@@ -26,7 +26,7 @@ class WeatherUberRidesIntegrationTest(unittest.TestCase):
         task.execute(task_instance.get_template_context())
         assert check_dir_exists(local_path) == False
 
-    def test_uber_ingest_spark_task(self):
+    def test_02_uber_ingest_spark_task(self):
         "Test to confirm that ingest spark task ingests and persists data"
         local_path = get_local_path(self.uber_ingest_path)
         task = self.dag.get_task('spark_ingest_uberdata')
@@ -35,7 +35,7 @@ class WeatherUberRidesIntegrationTest(unittest.TestCase):
         assert check_dir_exists(local_path) == True
         verify_schema(local_path, 6, ['DATE', 'TIME', 'PICK_UP_ADDRESS'])
 
-    def test_uber_transform_cleanup_task(self):
+    def test_03_uber_transform_cleanup_task(self):
         "Test to confirm that cleanup task removes directory if exists"
         local_path = get_local_path(self.uber_transform_path)
         task = self.dag.get_task('cleanup_transform_uberdata')
@@ -44,7 +44,7 @@ class WeatherUberRidesIntegrationTest(unittest.TestCase):
         task.execute(task_instance.get_template_context())
         assert check_dir_exists(local_path) == False
 
-    def test_uber_transform_spark_task(self):
+    def test_04_uber_transform_spark_task(self):
         "Test to confirm that spark task transforms and persists data"
         local_path = get_local_path(self.uber_transform_path)
         task = self.dag.get_task('spark_transform_uberdata')
@@ -53,7 +53,7 @@ class WeatherUberRidesIntegrationTest(unittest.TestCase):
         assert check_dir_exists(local_path) == True
         verify_schema(local_path, 7, ['dayofweek'])
 
-    def test_weather_ingest_cleanup_task(self):
+    def test_05_weather_ingest_cleanup_task(self):
         "Test to confirm that cleanup task removes directory if exists"
         local_path = get_local_path(self.weather_ingest_path)
         task = self.dag.get_task('cleanup_ingest_weatherdata')
@@ -62,7 +62,7 @@ class WeatherUberRidesIntegrationTest(unittest.TestCase):
         task.execute(task_instance.get_template_context())
         assert check_dir_exists(local_path) == False
 
-    def test_weather_ingest_spark_task(self):
+    def test_06_weather_ingest_spark_task(self):
         "Test to confirm that ingest spark task ingests and persists data"
         local_path = get_local_path(self.weather_ingest_path)
         task = self.dag.get_task('spark_ingest_weatherdata')
@@ -71,7 +71,7 @@ class WeatherUberRidesIntegrationTest(unittest.TestCase):
         assert check_dir_exists(local_path) == True
         verify_schema(local_path, 17, ['date', 'hum_avg'])
 
-    def test_weather_transform_cleanup_task(self):
+    def test_07_weather_transform_cleanup_task(self):
         "Test to confirm that cleanup task removes directory if exists"
         local_path = get_local_path(self.weather_transform_path)
         task = self.dag.get_task('cleanup_transform_weatherdata')
@@ -80,7 +80,7 @@ class WeatherUberRidesIntegrationTest(unittest.TestCase):
         task.execute(task_instance.get_template_context())
         assert check_dir_exists(local_path) == False
 
-    def test_weather_transform_spark_task(self):
+    def test_08_weather_transform_spark_task(self):
         "Test to confirm that spark task transforms and persists data"
         local_path = get_local_path(self.weather_transform_path)
         task = self.dag.get_task('spark_transform_weatherdata')
@@ -89,14 +89,14 @@ class WeatherUberRidesIntegrationTest(unittest.TestCase):
         assert check_dir_exists(local_path) == True
         verify_schema(local_path, 19, ['dayofweek', 'humidity_range'])
 
-    def test_join_pipeline_task(self):
+    def test_09_join_pipeline_task(self):
         "Dummy test pipeline join"
         task = self.dag.get_task('join_pipeline_task')
         task_instance = models.TaskInstance(task=task, execution_date=datetime.now())
         task.execute(task_instance.get_template_context())
         assert 1 == 1
 
-    def test_datamart_cleanup_task(self):
+    def test_10_datamart_cleanup_task(self):
         "Test to confirm that cleanup task removes directory if exists"
         local_path = get_local_path(self.app_path)
         task = self.dag.get_task('cleanup_uber_rides_by_himidity_uberridesbyhumidity')
@@ -105,7 +105,7 @@ class WeatherUberRidesIntegrationTest(unittest.TestCase):
         task.execute(task_instance.get_template_context())
         assert check_dir_exists(local_path) == False
 
-    def test_datamart_transform_spark_task(self):
+    def test_11_datamart_transform_spark_task(self):
         "Test to confirm that spark task joins and persists data"
         local_path = get_local_path(self.app_path)
         task = self.dag.get_task('spark_uber_rides_by_himidity_uberridesbyhumidity')

@@ -1,7 +1,7 @@
 import os
 import shutil
 
-DIR_PATH = os.getcwd()+'/'
+DIR_PATH = 'file://'+os.getcwd()+'/'
 
 
 def cleanup_dir(path):

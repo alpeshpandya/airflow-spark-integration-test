@@ -2,15 +2,15 @@
   "common":{
     "hdfs":{
       "host":""
-      ,"lake1Path":"data/ingest"
-      ,"lake2Path":"data/transform"
-      ,"lake3Path":"data/datamart"
+      ,"lake1Path":"pipeline/data/ingest"
+      ,"lake2Path":"pipeline/data/transform"
+      ,"lake3Path":"pipeline/data/datamart"
     }
   },
   "ingest":{
     "sources":{
-        "uber_data":"data/source/uber.csv"
-        ,"weather_data":"data/source/weather.csv"
+        "uber_data":"pipeline/data/source/uber.csv"
+        ,"weather_data":"pipeline/data/source/weather.csv"
       }
     ,
     "output":{

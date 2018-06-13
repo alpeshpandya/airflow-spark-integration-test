@@ -3,7 +3,7 @@ from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
 from datetime import date
 import json
-from factory import pipeline_factory, app_task_factory
+from main.factory import pipeline_factory, app_task_factory
 import os
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
