@@ -17,3 +17,4 @@
 * Deploy to Airflow
   * `export AIRFLOW_HOME=<path to airflow home>`
   * `./bin/deploy.sh`
+* Docker : `./bin/docker_test_run.sh`
